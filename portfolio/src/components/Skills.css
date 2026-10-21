@@ -1,0 +1,45 @@
+.skill-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  align-items: start;
+  gap: 14px 40px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.skill-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.skill-row .chips {
+  padding-top: 6px;
+}
+
+@media (max-width: 760px) {
+  .skill-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+}

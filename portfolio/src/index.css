@@ -1,0 +1,327 @@
+/* ─────────────────────────────────────────────────────────────
+   Global styles: design tokens, reset, and shared building blocks
+   (buttons, chips, cards, section headings). Component-specific
+   styles live next to each component (Hero.css, Skills.css, …).
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Orange: --orange is for decoration, --accent is for text, buttons use --btn-* (both pass contrast checks) */
+  --orange: #f26a1f;
+  --accent: #c2410c;
+  --btn-bg: #c2410c;
+  --btn-bg-hover: #a8380a;
+  --btn-fg: #ffffff;
+
+  --ink: #0e0e0e;
+  --body: #34353b;
+  --muted: #5b6170;
+  --paper: #ffffff;
+  --paper-alt: #f8f6f2;
+  --surface: #ffffff;
+  --border: #e9e4dd;
+  --tint: rgba(242, 106, 31, 0.09);
+  --chip-border: rgba(242, 106, 31, 0.28);
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --shadow: 0 14px 32px -22px rgba(60, 40, 20, 0.45);
+  --error: #b42318;
+
+  --nav-h: 68px;
+  --gutter: clamp(18px, 4vw, 32px);
+  --radius: 16px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --accent: #ff8a4c;
+  --btn-bg: #f26a1f;
+  --btn-bg-hover: #ff7d36;
+  --btn-fg: #0b0f16;
+
+  --ink: #f2f3f7;
+  --body: #c3c8d4;
+  --muted: #9aa1b2;
+  --paper: #0e121a;
+  --paper-alt: #0b0f16;
+  --surface: #161b28;
+  --border: #2a3040;
+  --tint: rgba(242, 106, 31, 0.16);
+  --chip-border: rgba(242, 106, 31, 0.38);
+  --nav-bg: rgba(14, 18, 26, 0.88);
+  --shadow: 0 14px 32px -22px rgba(0, 0, 0, 0.85);
+  --error: #ff9a8f;
+
+  color-scheme: dark;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--body);
+  font: 400 1rem/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* ── Accessibility helpers ─────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 16px;
+  z-index: 300;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+.container {
+  width: min(1180px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(64px, 9vw, 112px);
+  background: var(--paper);
+  scroll-margin-top: var(--nav-h);
+}
+
+.section--alt {
+  background: var(--paper-alt);
+}
+
+.section-head {
+  max-width: 46rem;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.section-head h2 {
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.squiggle {
+  width: 64px;
+  height: 8px;
+  margin: 12px 0 0 2px;
+  color: var(--orange);
+}
+
+.section-intro {
+  max-width: 60ch;
+  margin-top: 16px;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
+  color: var(--body);
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font: 700 0.975rem/1 var(--font-display);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--btn-bg);
+  border-color: var(--btn-bg);
+  color: var(--btn-fg);
+}
+
+.btn-primary:hover {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-bg-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-sm {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 2px solid var(--orange);
+  font: 600 0.9rem/1.3 var(--font-display);
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link-btn:hover {
+  color: var(--accent);
+}
+
+/* ── Chips & cards ─────────────────────────────────────────── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 6px 13px;
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  background: var(--tint);
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.chips--small .chip {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.icon {
+  flex: none;
+}
+
+/* Smooth colour change when the theme switches */
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  .section,
+  .card,
+  .chip,
+  .navbar {
+    transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:hover {
+    transition: none;
+    transform: none;
+  }
+}

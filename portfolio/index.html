@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ra Mani Kanta Bathula — Software Engineer &amp; Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Ra Mani Kanta Bathula, a software engineer and full-stack developer (Node.js, React) focused on application security. Projects, experience and certifications."
+    />
+    <meta name="author" content="Ra Mani Kanta Bathula" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ra Mani Kanta Bathula — Software Engineer & Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Node.js and React developer with a cybersecurity background. See projects, experience and certifications."
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: Plus Jakarta Sans (headings) + Inter (text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Apply the saved (or system) theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme')
+          if (t !== 'dark' && t !== 'light') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          }
+          document.documentElement.setAttribute('data-theme', t)
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>This portfolio needs JavaScript enabled to display.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

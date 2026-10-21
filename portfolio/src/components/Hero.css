@@ -1,0 +1,436 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--nav-h) + clamp(12px, 3vw, 40px)) var(--gutter) calc(clamp(24px, 4vw, 56px) + 44px);
+  background: var(--paper);
+  scroll-margin-top: 0;
+}
+
+.hero-wrap {
+  width: min(1280px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(690px, 54%));
+  align-items: center;
+  gap: clamp(8px, 2vw, 32px);
+}
+
+/* ── Text ──────────────────────────────────────────────────── */
+.hero-copy {
+  container-type: inline-size;
+}
+
+.hi {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  font: 600 1.15rem/1.2 var(--font-display);
+  color: var(--ink);
+}
+
+.hi svg {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 54px;
+  height: 8px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-size: min(9.3cqw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  text-transform: uppercase;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ch {
+  display: inline-block;
+}
+
+.role {
+  margin-top: 1.4rem;
+  font: 700 clamp(1rem, 1.5vw, 1.3rem) / 1.3 var(--font-display);
+  color: var(--ink);
+}
+
+.lede {
+  max-width: 31rem;
+  margin-top: 1.4rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.9;
+  color: var(--body);
+}
+
+.hl {
+  background: linear-gradient(var(--orange), var(--orange)) no-repeat 0 100% / 0 2px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.wd {
+  display: inline-block;
+}
+
+.hero-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 31rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 2rem;
+}
+
+/* ── Illustration ──────────────────────────────────────────── */
+.scene {
+  position: relative;
+  justify-self: end;
+  width: min(100%, max(300px, calc((100svh - var(--nav-h) - clamp(20px, 4vw, 56px) * 2 - 44px) * 1.148)));
+  aspect-ratio: 690 / 601;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scene > * {
+  position: absolute;
+  display: block;
+}
+
+.plate {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.plate-dark {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+:root[data-theme='dark'] .plate-dark {
+  opacity: 1;
+}
+
+.head,
+.fx {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent),
+    linear-gradient(180deg, transparent, #000 3%, #000 97%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent),
+    linear-gradient(180deg, transparent, #000 3%, #000 97%, transparent);
+  mask-composite: intersect;
+}
+
+.head {
+  left: 40.87%;
+  top: 21.3%;
+  width: 33.91%;
+  height: 53.24%;
+  transition: opacity 0.25s;
+}
+
+.head.on {
+  opacity: 1;
+}
+
+:root[data-theme='dark'] .head.on {
+  opacity: 0;
+}
+
+.fx {
+  left: 22.03%;
+  top: 0.17%;
+  width: 50.72%;
+  height: 89.85%;
+  transition: opacity 0.4s ease;
+}
+
+.fx.on {
+  opacity: 1;
+}
+
+.cord {
+  left: 44.058%;
+  top: 0;
+  width: 1.884%;
+  height: 43.927%;
+  pointer-events: none;
+  transition: transform 0.35s var(--ease), opacity 0.4s ease;
+}
+
+:root[data-theme='dark'] .cord {
+  opacity: 0;
+}
+
+.scene:has(.bulb:hover) .cord,
+.scene:has(.bulb:focus-visible) .cord {
+  transform: translateY(4px);
+}
+
+.bulb {
+  left: 27%;
+  top: 17%;
+  width: 20%;
+  height: 18%;
+  padding: 0;
+  border: 0;
+  border-radius: 40%;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bulb::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  width: 150%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(242, 106, 31, 0.34), rgba(242, 106, 31, 0));
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.bulb:hover::after,
+.bulb:focus-visible::after {
+  opacity: 1;
+}
+
+.bulb:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.cordhit {
+  left: 42.9%;
+  top: 0;
+  width: 4.06%;
+  height: 44%;
+  border-radius: 0;
+}
+
+.cordhit::after {
+  display: none;
+}
+
+/* ── Scroll cue ────────────────────────────────────────────── */
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font: 700 0.72rem/1 var(--font-display);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.cue:hover {
+  color: var(--accent);
+}
+
+.cue svg {
+  animation: cue 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ── Page-load sequence (the one orchestrated moment) ──────── */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes riseScene {
+  from {
+    opacity: 0;
+    transform: translateX(36px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chUp {
+  from {
+    opacity: 0;
+    transform: translateY(108%) rotate(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wdIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.7em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes underline {
+  to {
+    background-size: 100% 2px;
+  }
+}
+
+@keyframes cue {
+  0%,
+  100% {
+    transform: translateY(-2px);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
+.intro {
+  animation: rise 1s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 140ms);
+}
+
+.scene-in {
+  animation-name: riseScene;
+  animation-duration: 1.25s;
+}
+
+.hero-title .ch {
+  animation: chUp 1.05s var(--ease) both;
+  animation-delay: calc(var(--c) * 32ms + 380ms);
+}
+
+.hi .ch {
+  animation: chFade 0.7s var(--ease) both;
+  animation-delay: calc(var(--c) * 45ms + 140ms);
+}
+
+.hi svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: draw 0.9s var(--ease) 0.85s both;
+}
+
+.wd {
+  animation: wdIn 0.85s var(--ease) both;
+  animation-delay: calc(var(--w) * 30ms + 1100ms);
+}
+
+.hl {
+  animation: underline 1.1s var(--ease) 2.2s both;
+}
+
+@media (max-width: 860px) {
+  .hero-wrap {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .hero-title {
+    font-size: min(9.3cqw, 3rem);
+  }
+
+  .scene {
+    justify-self: center;
+    width: 100%;
+    max-width: 560px;
+  }
+}
+
+@media (max-height: 520px) {
+  .cue {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .scene-in,
+  .ch,
+  .wd,
+  .hi svg path,
+  .hl,
+  .cue svg {
+    animation: none;
+  }
+
+  .hi svg path {
+    stroke-dashoffset: 0;
+  }
+
+  .hl {
+    background-size: 100% 2px;
+  }
+
+  .plate-dark,
+  .fx,
+  .head,
+  .cord {
+    transition: none;
+  }
+}
